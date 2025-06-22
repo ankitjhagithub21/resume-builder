@@ -1,7 +1,10 @@
+import CreateResume from '@/components/custom/CreateResume';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useResumeDialog } from '@/contexts/ResumeDialogContext';
 
  function Home() {
+  const {openDialog} = useResumeDialog()
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
@@ -15,9 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
             Our resume builder helps you create a standout resume in minutes — no design skills required.
           </p>
           <div className="mt-6 flex justify-center gap-4">
-            <Button>
-              Get Started
-            </Button>
+            <Button onClick={openDialog}>Get Started</Button>
             <Button variant="outline">Live Demo</Button>
           </div>
         </div>
@@ -68,7 +69,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
           </Button>
         </div>
       </section>
-
+      <CreateResume/>
      
     </div>
   );
