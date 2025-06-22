@@ -1,8 +1,13 @@
-import React from 'react'
+import {ThemeProvider} from '@/components/theme-provider'
 import "./App.css"
+import { Button } from './components/ui/button'
+import Navbar from './components/custom/Navbar'
 const App = () => {
   return (
-    <div className='text-3xl'>App</div>
+    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+      <Navbar/>
+      <Button>Hello world</Button>
+    </ThemeProvider>
   )
 }
 
