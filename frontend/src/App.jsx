@@ -9,6 +9,7 @@ import Profile from './pages/Profile'
 import { RouterProvider } from 'react-router'
 import { ResumeDialogProvider } from './contexts/ResumeDialogContext'
 import EditResume from './pages/EditResume'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -33,6 +34,14 @@ const App = () => {
       element: <>
        <Navbar />
         <EditResume/>
+        <Footer />
+      </>
+    },
+    {
+      path: "/*",
+      element: <>
+       <Navbar />
+        <NotFound/>
         <Footer />
       </>
     },
