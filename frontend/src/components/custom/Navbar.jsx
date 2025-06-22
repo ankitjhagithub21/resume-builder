@@ -11,10 +11,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { toast } from "sonner"
 
 
 const Navbar = () => {
-  const { user } = useUser();
+  const { user,setUser } = useUser();
+
+  const handleLogout = async() => {
+      try{
+        await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/logout`,{
+          credentials:'include'
+        })
+        setUser(null)
+        toast("Logout successfull.")
+      }catch(error){
+        console.log(error.message)
+      }
+  }
 
   return (
    <header className="shadow-xl">
@@ -33,7 +46,7 @@ const Navbar = () => {
             <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu> : <div className="flex items-center gap-2">
           <Login />

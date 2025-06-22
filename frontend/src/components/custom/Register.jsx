@@ -60,7 +60,7 @@ function Register() {
         <div className="p-4">
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button variant="outline">Sign Up</Button>
+                    <Button>Sign Up</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <form onSubmit={handleSubmit}>
