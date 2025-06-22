@@ -49,7 +49,7 @@ const register = asyncHandler(async (req, res) => {
     res.status(201).json({
         message: 'Account created successfully.',
         success: true,
-        data: {
+        user: {
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -86,7 +86,7 @@ const login = asyncHandler(async (req, res) => {
     res.status(200).json({
         message: `Welcome back ${user.name}`,
         success: true,
-        data: {
+        user: {
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -102,15 +102,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
         throw new CustomError('User not found.',404);
     }
 
-    res.status(200).json({
-        message: `User found.`,
-        success: true,
-        data: {
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-        },
-    });
+    res.status(200).json(user);
 });
 
 const logout = (req,res) => {
