@@ -94,7 +94,27 @@ const login = asyncHandler(async (req, res) => {
     });
 });
 
+const getUserProfile = asyncHandler(async (req, res) => {
+
+    const user = await User.findById(req.user._id).select("-password");
+
+    if(!user){
+        throw new CustomError('User not found.',404);
+    }
+
+    res.status(200).json({
+        message: `User found.`,
+        success: true,
+        data: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+        },
+    });
+});
+
 module.exports = {
     register,
     login,
+    getUserProfile
 };
