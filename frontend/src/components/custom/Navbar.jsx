@@ -1,22 +1,34 @@
-import { useUser } from "../../contexts/UserContext"
-import { ModeToggle } from "../mode-toggle"
+import { useUser } from "@/contexts/UserContext"
+import { ModeToggle } from "@/components/mode-toggle"
 import Login from "./Login"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Register from "./Register"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage
+} from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/ui/sheet"
 import { toast } from "sonner"
 import { Link } from "react-router-dom"
-
+import { Menu } from "lucide-react"
+import { Button } from "../ui/button"
 
 const Navbar = () => {
-  const { user, setUser } = useUser();
+  const { user, setUser } = useUser()
 
   const handleLogout = async () => {
     try {
@@ -24,7 +36,7 @@ const Navbar = () => {
         credentials: 'include'
       })
       setUser(null)
-      toast("Logout successfull.")
+      toast("Logout successful.")
     } catch (error) {
       console.log(error.message)
     }
@@ -32,38 +44,80 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="flex items-center container mx-auto border-b h-16 px-1 justify-between">
-        <Link to={"/"} className="cursor-pointer">
-          <img src="/logo.png" alt="logo" width={200} />
-
+      <nav className="flex items-center container mx-auto border-b h-16 px-2 justify-between">
+        <Link to="/" className="cursor-pointer">
+          <img src="/logo.png" alt="logo" width={180} />
         </Link>
-        <div className="flex items-center gap-2">
-           <ModeToggle />
-          {
-          user ? <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage src="https://cdn-icons-png.flaticon.com/512/219/219983.png" />
-                <AvatarFallback>{user.name}</AvatarFallback>
 
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link to={"/profile"}>Profile</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu> : <>
-            <Login />
-            <Register />
-            
-          </>
-          
-        }
-       
+        <div className="flex items-center gap-2 md:hidden">
+          <ModeToggle />
+          <Sheet>
+            <SheetTrigger>
+              <Menu className="w-6 h-6" />
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+
+              <div className="mt-4 flex flex-col gap-4">
+                {user ? (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <Avatar>
+                        <AvatarImage src="https://cdn-icons-png.flaticon.com/512/219/219983.png" />
+                        <AvatarFallback>{user.name}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">{user.name}</p>
+                        <p className="text-sm text-muted-foreground">{user.email}</p>
+                      </div>
+                    </div>
+                    <Link to="/profile" className="text-blue-600">Profile</Link>
+                    <Button
+                      onClick={handleLogout}
+                      variant={"destructive"}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <div className="w-3/4 mx-auto flex flex-col gap-5">
+                    <Login />
+                    <Register />
+                  </div>
+                )}
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-4">
+          <ModeToggle />
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src="https://cdn-icons-png.flaticon.com/512/219/219983.png" />
+                  <AvatarFallback>{user.name}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link to="/profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Login />
+              <Register />
+            </>
+          )}
         </div>
       </nav>
     </header>

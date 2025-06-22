@@ -18,6 +18,10 @@ app.use(cors({
 }))
 app.use(cookieParser())
 
+app.get("/",(req,res)=>{
+  res.json({message:"Api working"})
+})
+
 //routes
 app.use('/api/user',userRouter)
 app.use('/api/resumes',resumeRouter)
