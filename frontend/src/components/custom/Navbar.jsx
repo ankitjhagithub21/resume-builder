@@ -60,7 +60,7 @@ const Navbar = () => {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
 
-              <div className="mt-4 flex flex-col gap-4">
+              <div className="mt-4 flex flex-col gap-4 w-3/4 mx-auto">
                 {user ? (
                   <>
                     <div className="flex items-center gap-2">
@@ -73,13 +73,14 @@ const Navbar = () => {
                         <p className="text-sm text-muted-foreground">{user.email}</p>
                       </div>
                     </div>
-                    <Link to="/profile" className="text-blue-600">Profile</Link>
-                    <Button
-                      onClick={handleLogout}
-                      variant={"destructive"}
-                    >
-                      Logout
-                    </Button>
+                    <li className="list-none">
+                      <Link to="/profile" className="w-full">
+                    Profile
+                    </Link>
+                    </li>
+                   <li className="list-none" onClick={handleLogout}>
+                    Logout
+                   </li>
                   </>
                 ) : (
                   <div className="w-3/4 mx-auto flex flex-col gap-5">

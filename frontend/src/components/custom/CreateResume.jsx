@@ -13,12 +13,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useUser } from "../../contexts/UserContext"
 import { useResumeDialog } from "../../contexts/ResumeDialogContext"
+import { useDispatch } from "react-redux"
+import { addResume } from "@/redux/slices/resumeSlice"
 
 function CreateResume() {
   const [title, setTitle] = useState("")
   const [loading, setLoading] = useState(false)
   const { user } = useUser()
   const { open, closeDialog } = useResumeDialog()
+
+  const dispatch = useDispatch()
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -44,11 +48,13 @@ function CreateResume() {
 
       const data = await res.json()
 
-      if (!res.ok) throw new Error(data.message || "Resume creation failed")
+      if (!res.ok) throw new Error("Resume creation failed !")
 
-      toast.success(data.message)
+      dispatch(addResume(data))
+
+      toast.success("Resume created successfully.")
       closeDialog()
-     
+
     } catch (error) {
       toast.error(error.message)
     } finally {
@@ -69,7 +75,7 @@ function CreateResume() {
 
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="title">Title</Label>
+              <Label htmlFor="title">Unique title</Label>
               <Input
                 id="title"
                 type="text"
@@ -80,6 +86,8 @@ function CreateResume() {
               />
             </div>
           </div>
+
+        
 
           <DialogFooter>
             <Button type="submit" disabled={loading}>

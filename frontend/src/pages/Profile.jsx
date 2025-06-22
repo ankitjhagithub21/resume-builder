@@ -15,11 +15,14 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteResume, setResumes } from "@/redux/slices/resumeSlice"
 
 
 function Profile() {
-  const [resumes, setResumes] = useState([])
+  const { resumes } = useSelector(state => state.resume)
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { openDialog } = useResumeDialog()
   const fetchResumes = async () => {
@@ -33,7 +36,7 @@ function Profile() {
       )
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || "Failed to fetch resumes")
-      setResumes(data)
+      dispatch(setResumes(data))
     } catch (error) {
       toast.error(error.message)
     } finally {
@@ -50,7 +53,7 @@ function Profile() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || "Delete failed")
       toast.success(data.message)
-      setResumes((prev) => prev.filter((resume) => resume._id !== resumeId))
+      dispatch(deleteResume(resumeId))
     } catch (error) {
       toast.error(error.message)
     }

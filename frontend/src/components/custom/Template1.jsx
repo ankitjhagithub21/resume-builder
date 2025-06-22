@@ -1,5 +1,5 @@
 const Template1 = ({ resume }) => {
-    console.log(resume)
+    
 
     return (
         <div className="bg-white shadow-lg rounded-lg overflow-hidden h-full">

@@ -8,7 +8,12 @@ const createResume = asyncHandler(async (req, res) => {
     if (!title) {
         throw new CustomError("Title is required.", 400);
     }
+    const isExist = await Resume.findOne({user:req.user._id,title:title});
 
+    if(isExist){
+        throw new CustomError('Resume already exist with this title.',400)
+    }
+    
     const newResume = new Resume({
         user: req.user._id,
         ...req.body
@@ -16,16 +21,12 @@ const createResume = asyncHandler(async (req, res) => {
 
     await newResume.save()
 
-    res.status(201).json({
-        message: 'Resume created successfully.',
-        success: true,
-        data: newResume
-    });
+    res.status(201).json(newResume);
 });
 
 const getUserResumes = asyncHandler(async (req, res) => {
 
-    const resumes = await Resume.find({ user: req.user._id }).sort({ updatedAt: -1 });
+    const resumes = await Resume.find({ user: req.user._id }).select('title').sort({ updatedAt: -1 });
 
     if (!resumes) {
         throw new CustomError("Resume not found.", 404)
