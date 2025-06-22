@@ -1,4 +1,4 @@
-import { useUser } from "../contexts/UserContext"
+import { useUser } from "../../contexts/UserContext"
 import { ModeToggle } from "../mode-toggle"
 import Login from "./Login"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -30,9 +30,13 @@ const Navbar = () => {
   }
 
   return (
-   <header className="shadow-xl">
-     <nav className="flex items-center container mx-auto  px-4 py-3 justify-between">
-      <ModeToggle />
+   <header>
+     <nav className="flex items-center container mx-auto border-b h-16  justify-between">
+     
+        <img src="./logo.png" alt="logo" width={200}/>
+        
+    
+     
       {
         user ? <DropdownMenu>
           <DropdownMenuTrigger>
@@ -51,6 +55,7 @@ const Navbar = () => {
         </DropdownMenu> : <div className="flex items-center gap-2">
           <Login />
           <Register />
+           <ModeToggle />
         </div>
       }
     </nav>

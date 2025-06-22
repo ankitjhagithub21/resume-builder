@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useUser } from "../contexts/UserContext"
+import { useUser } from "../../contexts/UserContext"
 
 
 function Login() {
@@ -56,7 +56,7 @@ function Login() {
   }
 
   return (
-    <div className="p-4">
+    <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="outline">Login</Button>
@@ -101,7 +101,7 @@ function Login() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   )
 }
 

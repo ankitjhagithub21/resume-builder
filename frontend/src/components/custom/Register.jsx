@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useUser } from "../contexts/UserContext"
+import { useUser } from "../../contexts/UserContext"
 
 
 function Register() {
@@ -57,7 +57,7 @@ function Register() {
     }
 
     return (
-        <div className="p-4">
+        <>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                     <Button>Sign Up</Button>
@@ -113,7 +113,7 @@ function Register() {
                     </form>
                 </DialogContent>
             </Dialog>
-        </div>
+        </>
     )
 }
 
