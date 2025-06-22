@@ -113,8 +113,15 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
 });
 
+const logout = (req,res) => {
+    res.clearCookie('token',{
+        maxAge:0
+    }).status(200).json({message:"Logout successfully.",success:true})
+}
+
 module.exports = {
     register,
     login,
-    getUserProfile
+    getUserProfile,
+    logout
 };
