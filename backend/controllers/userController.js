@@ -25,9 +25,14 @@ const register = asyncHandler(async (req, res) => {
         throw new CustomError('User already exists.', 400);
     }
 
-    if (!validator.isStrongPassword(password)) {
-        throw new CustomError('Please enter a strong password.', 400);
+    if (password.trim().length < 6) {
+        throw new CustomError('Password must be atleast 6 characters long.', 400);
     }
+
+    if (password.includes(" ")) {
+        throw new CustomError('Password must not contain any space.', 400);
+    }
+
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -98,17 +103,17 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user._id).select("-password");
 
-    if(!user){
-        throw new CustomError('User not found.',404);
+    if (!user) {
+        throw new CustomError('User not found.', 404);
     }
 
     res.status(200).json(user);
 });
 
-const logout = (req,res) => {
-    res.clearCookie('token',{
-        maxAge:0
-    }).status(200).json({message:"Logout successfully.",success:true})
+const logout = (req, res) => {
+    res.clearCookie('token', {
+        maxAge: 0
+    }).status(200).json({ message: "Logout successfully.", success: true })
 }
 
 module.exports = {

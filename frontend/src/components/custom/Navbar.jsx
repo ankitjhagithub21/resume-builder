@@ -31,12 +31,11 @@ const Navbar = () => {
 
   return (
    <header>
-     <nav className="flex items-center container mx-auto border-b h-16  justify-between">
+     <nav className="flex items-center container mx-auto border-b h-16 px-1 justify-between">
      
         <img src="./logo.png" alt="logo" width={200}/>
         
-    
-     
+  
       {
         user ? <DropdownMenu>
           <DropdownMenuTrigger>

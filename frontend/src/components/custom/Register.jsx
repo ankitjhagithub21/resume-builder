@@ -67,7 +67,7 @@ function Register() {
                         <DialogHeader>
                             <DialogTitle>Create Account</DialogTitle>
                             <DialogDescription>
-                                Create an account if you does not have.
+                               Don't have an account? Create one now.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
