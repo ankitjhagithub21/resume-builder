@@ -9,7 +9,9 @@ import Step7 from '@/components/custom/Step7';
 import Step8 from '@/components/custom/Step8';
 import Step9 from '@/components/custom/Step9';
 import Template1 from '@/components/custom/Template1';
+import Template2 from '@/components/custom/Template2';
 import { Button } from '@/components/ui/button';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { Loader2, Save } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -23,6 +25,7 @@ const EditResume = () => {
     const [step, setStep] = useState(1);
     const totalSteps = 9;
     const navigate = useNavigate()
+    const [selectedTemplate, setSelectedTemplate] = useState('template1');
 
     const fetchResume = async () => {
         try {
@@ -166,13 +169,26 @@ const EditResume = () => {
             <div className='grid grid-cols-2 gap-5'>
                 <div>
                     <div className='flex gap-2 mb-5'>
-            <Button variant={'outline'} onClick={handlePrevClick}>Prev</Button>
-            <Button onClick={handleNextClick}>Next</Button>
-            </div>
+                        <Button variant={'outline'} onClick={handlePrevClick}>Prev</Button>
+                        <Button onClick={handleNextClick}>Next</Button>
+                    </div>
                     {renderCurrentStep()}
                 </div>
                 <div>
-                    <Template1 resume={resume} />
+                  <div className='mb-5'>
+                      <Select value={selectedTemplate} onValueChange={setSelectedTemplate} >
+                        <SelectTrigger>
+                            <SelectValue placeholder="Choose a template" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="template1">Template 1</SelectItem>
+                            <SelectItem value="template2">Template 2</SelectItem>
+                        </SelectContent>
+                    </Select>
+                  </div>
+
+                    {selectedTemplate === 'template1' && <Template1 resume={resume} />}
+                    {selectedTemplate === 'template2' && <Template2 resume={resume} />}
                 </div>
             </div>
 

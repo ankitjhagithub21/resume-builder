@@ -1,0 +1,139 @@
+const Template2 = ({ resume }) => {
+    return (
+        <div className="bg-gray-50 text-gray-900 shadow-md rounded-md overflow-hidden flex flex-col md:flex-row h-full">
+            {/* Sidebar */}
+            <aside className="md:w-1/3 bg-white p-6 border-r space-y-6">
+                {/* Name */}
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold">{resume.fullName || 'Your Name'}</h1>
+                    <p className="text-sm text-gray-600">{resume.contact?.location || ''}</p>
+                </div>
+
+                {/* Contact Info */}
+                <div className="space-y-2 text-sm">
+                    {resume.contact?.email && <p>Email: {resume.contact.email}</p>}
+                    {resume.contact?.phone && <p>Phone: {resume.contact.phone}</p>}
+                    {resume.contact?.website && <p>Website: <a href={resume.contact.website} target="_blank" className="text-blue-600 hover:underline">{resume.contact.website}</a></p>}
+                    {resume.contact?.linkedin && <p>LinkedIn: <a href={resume.contact.linkedin} target="_blank" className="text-blue-600 hover:underline">Profile</a></p>}
+                    {resume.contact?.github && <p>GitHub: <a href={resume.contact.github} target="_blank" className="text-blue-600 hover:underline">Repo</a></p>}
+                </div>
+
+                {/* Skills */}
+                {resume.skills?.length > 0 && (
+                    <div>
+                        <h2 className="text-lg font-semibold mb-2">Skills</h2>
+                        <ul className="list-disc pl-5 text-sm space-y-1">
+                            {resume.skills.map((skill, i) => (
+                                <li key={i}>{skill.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {/* Languages */}
+                {resume.languages?.length > 0 && (
+                    <div>
+                        <h2 className="text-lg font-semibold mb-2">Languages</h2>
+                        <ul className="list-disc pl-5 text-sm">
+                            {resume.languages.map((lang, i) => (
+                                <li key={i}>
+                                    {lang.name} {lang.level && `(${lang.level})`}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {/* Interests */}
+                {resume.interests?.length > 0 && (
+                    <div>
+                        <h2 className="text-lg font-semibold mb-2">Interests</h2>
+                        <p className="text-sm">{resume.interests.join(', ')}</p>
+                    </div>
+                )}
+            </aside>
+
+            {/* Main Content */}
+            <main className="md:w-2/3 p-6 space-y-6">
+                {/* Summary */}
+                {resume.summary && (
+                    <section>
+                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Summary</h2>
+                        <p className="text-sm leading-relaxed">{resume.summary}</p>
+                    </section>
+                )}
+
+                {/* Experience */}
+                {resume.experience?.length > 0 && (
+                    <section>
+                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Work Experience</h2>
+                        <div className="space-y-4">
+                            {resume.experience.map((exp, i) => (
+                                <div key={i}>
+                                    <h3 className="font-semibold">{exp.role}</h3>
+                                    <p className="text-blue-600 text-sm">{exp.company}</p>
+                                    <p className="text-xs text-gray-500">{exp.startDate?.slice(0,10)} - {exp.endDate?.slice(0,10)}</p>
+                                    <p className="text-sm mt-1">{exp.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Education */}
+                {resume.education?.length > 0 && (
+                    <section>
+                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Education</h2>
+                        <div className="space-y-3">
+                            {resume.education.map((edu, i) => (
+                                <div key={i}>
+                                    <h3 className="font-semibold">{edu.degree}</h3>
+                                    <p className="text-blue-600 text-sm">{edu.institution}</p>
+                                    <p className="text-xs text-gray-500">{edu.startYear} - {edu.endYear} {edu.gpa && `| GPA: ${edu.gpa}`}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Projects */}
+                {resume.projects?.length > 0 && (
+                    <section>
+                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Projects</h2>
+                        <div className="space-y-3">
+                            {resume.projects.map((proj, i) => (
+                                <div key={i}>
+                                    <h3 className="font-semibold">{proj.name}</h3>
+                                    <p className="text-sm text-gray-600">{proj.description}</p>
+                                    {proj.techStack && (
+                                        <p className="text-sm text-blue-500">Tech: {proj.techStack.join(', ')}</p>
+                                    )}
+                                    <div className="flex gap-4 mt-1 text-sm">
+                                        {proj.liveDemo && <a href={proj.liveDemo} target="_blank" className="text-blue-600 hover:underline">Live</a>}
+                                        {proj.github && <a href={proj.github} target="_blank" className="text-blue-600 hover:underline">GitHub</a>}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Certificates */}
+                {resume.certificates?.length > 0 && (
+                    <section>
+                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Certificates</h2>
+                        <ul className="text-sm space-y-2">
+                            {resume.certificates.map((cert, i) => (
+                                <li key={i}>
+                                    <strong>{cert.title}</strong> – {cert.issuer} {cert.year && `(${cert.year})`}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+            </main>
+        </div>
+    );
+};
+
+export default Template2;
