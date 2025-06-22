@@ -166,7 +166,7 @@ const EditResume = () => {
             <ProgressIndicator currentStep={step} totalSteps={totalSteps} />
 
 
-            <div className='grid grid-cols-2 gap-5'>
+            <div className='grid lg:grid-cols-2 grid-cols-1 gap-5'>
                 <div>
                     <div className='flex gap-2 mb-5'>
                         <Button variant={'outline'} onClick={handlePrevClick}>Prev</Button>

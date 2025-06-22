@@ -1,6 +1,6 @@
 const Template2 = ({ resume }) => {
     return (
-        <div className="bg-gray-50 text-gray-900 shadow-md rounded-md overflow-hidden flex flex-col md:flex-row h-full">
+        <div className="bg-gray-50 text-gray-900 shadow-md rounded-md overflow-hidden flex flex-col md:flex-row h-screen overflow-y-scroll">
             {/* Sidebar */}
             <aside className="md:w-1/3 bg-white p-6 border-r space-y-6">
                 {/* Name */}

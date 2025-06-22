@@ -2,7 +2,7 @@ const Template1 = ({ resume }) => {
     
 
     return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-full">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-screen overflow-y-scroll">
             <div className="p-8 space-y-6">
                 {/* Header */}
                 <div className="text-center border-b pb-6">
@@ -103,15 +103,21 @@ const Template1 = ({ resume }) => {
                         </h2>
                         <div className="space-y-3">
                             {resume.education.map((edu, index) => (
-                                <div key={index}>
-                                    <h3 className="font-semibold text-gray-900">
+                                <div key={index} className="flex items-start justify-between">
+                                    <div>
+                                        <h3 className="font-semibold text-gray-900">
                                         {edu.degree || 'Degree'}
                                     </h3>
                                     <p className="text-blue-600">{edu.institution || 'Institution'}</p>
-                                    <p className="text-sm text-gray-600">
+                                    </div>
+                                    <div>
+                                          <p className="text-sm text-gray-600">
                                         {edu.startYear || 'Start'} - {edu.endYear || 'End'}
-                                        {edu.gpa && ` | GPA: ${edu.gpa}`}
+                                       
                                     </p>
+                                    <p className="text-sm text-gray-600"> {edu.gpa && `  CGPA: ${edu.gpa}`}</p>
+                                    </div>
+                                  
                                 </div>
                             ))}
                         </div>
