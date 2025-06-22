@@ -40,7 +40,8 @@ const resumeSchema = new mongoose.Schema({
     skills: [
         {
             name: { type: String },
-            level: { type: String }, // beginner, intermediate, expert
+            level: { type: String }, 
+             _id:false 
         },
     ],
 
@@ -51,6 +52,8 @@ const resumeSchema = new mongoose.Schema({
             fieldOfStudy: { type: String },
             startYear: { type: Number },
             endYear: { type: Number },
+            gpa:{type:Number},
+             _id:false
         },
     ],
 
@@ -61,6 +64,7 @@ const resumeSchema = new mongoose.Schema({
             startDate: { type: Date },
             endDate: { type: Date },
             description: { type: String },
+            _id:false
         },
     ],
     projects: [
@@ -70,6 +74,7 @@ const resumeSchema = new mongoose.Schema({
             techStack: [String],
             github: { type: String },
             liveDemo: { type: String },
+             _id:false
         },
     ],
 
@@ -79,13 +84,15 @@ const resumeSchema = new mongoose.Schema({
             issuer: String,
             year: String,
             link: { type: String },
+             _id:false
         },
     ],
 
     languages: [
         {
             name: { type: String },
-            level: { type: String }, // beginner, intermediate, expert
+            level: { type: String }, 
+             _id:false
         },
     ],
 

@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/alert-dialog"
 
 
-
 function Profile() {
   const [resumes, setResumes] = useState([])
   const [loading, setLoading] = useState(false)
@@ -117,6 +116,9 @@ function Profile() {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
+                  <Button size={"sm"}>
+                    View
+                  </Button>
                 </div>
               </li>
             ))}

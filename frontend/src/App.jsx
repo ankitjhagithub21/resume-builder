@@ -8,6 +8,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Profile from './pages/Profile'
 import { RouterProvider } from 'react-router'
 import { ResumeDialogProvider } from './contexts/ResumeDialogContext'
+import EditResume from './pages/EditResume'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -24,6 +25,14 @@ const App = () => {
       element: <>
        <Navbar />
         <Profile/>
+        <Footer />
+      </>
+    },
+     {
+      path: "/resume/edit/:id",
+      element: <>
+       <Navbar />
+        <EditResume/>
         <Footer />
       </>
     },

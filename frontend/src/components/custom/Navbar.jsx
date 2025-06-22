@@ -34,10 +34,12 @@ const Navbar = () => {
     <header>
       <nav className="flex items-center container mx-auto border-b h-16 px-1 justify-between">
         <Link to={"/"} className="cursor-pointer">
-          <img src="./logo.png" alt="logo" width={200} />
+          <img src="/logo.png" alt="logo" width={200} />
 
         </Link>
-        {
+        <div className="flex items-center gap-2">
+           <ModeToggle />
+          {
           user ? <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
@@ -54,12 +56,15 @@ const Navbar = () => {
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu> : <div className="flex items-center gap-2">
+          </DropdownMenu> : <>
             <Login />
             <Register />
-            <ModeToggle />
-          </div>
+            
+          </>
+          
         }
+       
+        </div>
       </nav>
     </header>
   )

@@ -43,10 +43,7 @@ const getResumeById = asyncHandler(async (req, res) => {
         throw new CustomError("Resume not found.", 404)
     }
 
-    res.status(200).json({
-        success: true,
-        data: resume
-    });
+    res.status(200).json(resume);
 });
 
 const updateResume = asyncHandler(async (req, res) => {
