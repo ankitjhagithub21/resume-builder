@@ -5,6 +5,7 @@ const connectDB = require('./db/conn')
 const cookieParser = require('cookie-parser')
 const errorHandler = require('./middlewares/errorMiddleware');
 const userRouter = require('./routes/userRoutes')
+const resumeRouter = require('./routes/resumeRoutes')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -19,6 +20,7 @@ app.use(cookieParser())
 
 //routes
 app.use('/api/user',userRouter)
+app.use('/api/resumes',resumeRouter)
 app.use(errorHandler);
 
 app.listen(port, () => {

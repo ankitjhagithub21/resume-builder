@@ -9,7 +9,7 @@ const resumeSchema = new mongoose.Schema({
     },
     fullName: {
         type: String,
-        required: true,
+        default:""
     },
     profilePhoto: {
         url: {
@@ -20,12 +20,13 @@ const resumeSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        trim:true
     },
 
     contact: {
-        email: { type: String, required: true },
+        email: { type: String },
         phone: { type: String },
-        address: { type: String },
+        location: { type: String },
         linkedin: { type: String },
         github: { type: String },
         website: { type: String },
@@ -33,6 +34,7 @@ const resumeSchema = new mongoose.Schema({
 
     summary: {
         type: String,
+        default:""
     },
 
     skills: [
@@ -44,7 +46,7 @@ const resumeSchema = new mongoose.Schema({
 
     education: [
         {
-            institution: { type: String, required: true },
+            institution: { type: String},
             degree: { type: String },
             fieldOfStudy: { type: String },
             startYear: { type: Number },
@@ -54,8 +56,8 @@ const resumeSchema = new mongoose.Schema({
 
     experience: [
         {
-            company: { type: String, required: true },
-            position: { type: String },
+            company: { type: String},
+            role: { type: String },
             startDate: { type: Date },
             endDate: { type: Date },
             description: { type: String },
@@ -63,11 +65,11 @@ const resumeSchema = new mongoose.Schema({
     ],
     projects: [
         {
-            name: { type: String, required: true },
+            name: { type: String},
             description: { type: String },
             techStack: [String],
-            link: { type: String },
-
+            github: { type: String },
+            liveDemo: { type: String },
         },
     ],
 
