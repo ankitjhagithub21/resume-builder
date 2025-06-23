@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const hbs = require('handlebars')
 const moment = require('moment')
+const imagekit = require('../utils/imagekit');
 
 
 const compile = async function (templateName, data) {
@@ -16,7 +17,7 @@ const compile = async function (templateName, data) {
 };
 
 hbs.registerHelper('formatDate', function (date) {
-  return moment(date).format('MMM YYYY'); // e.g., Jun 2023
+    return moment(date).format('MMM YYYY'); // e.g., Jun 2023
 });
 
 
@@ -105,26 +106,22 @@ const deleteResume = asyncHandler(async (req, res) => {
 
 const generatePdf = asyncHandler(async (req, res) => {
     const { template, resumeId } = req.body;
-
-    // Fetch resume by ID and user
     const resume = await Resume.findOne({ _id: resumeId, user: req.user._id }).lean();
 
     if (!resume) {
-        throw new CustomError("Resume not found", 404); // 
+        throw new CustomError("Resume not found", 404);
     }
 
-    // Compile template with resume data
     const content = await compile(template, resume);
 
-    // Launch Puppeteer and create PDF
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.setContent(content, { waitUntil: 'networkidle0' });
     await page.emulateMediaType('screen');
 
-    // Define PDF output path
-    const pdfPath = path.join(process.cwd(), 'uploads', `${resume.title}_${resume.user}.pdf`);
+    const fileName = `${resume.title}_${resume.user}.pdf`;
+    const pdfPath = path.join(process.cwd(), 'uploads', fileName);
 
     await page.pdf({
         path: pdfPath,
@@ -134,11 +131,24 @@ const generatePdf = asyncHandler(async (req, res) => {
 
     await browser.close();
 
-    // Send success response (optionally send PDF or download link)
+    // Upload to ImageKit
+    const fileBuffer = await fs.readFile(pdfPath);
+
+    const uploadResponse = await imagekit.upload({
+        file: fileBuffer,         // required
+        fileName: fileName,       // required
+        folder: "/resumes",       // optional
+        useUniqueFileName: true   // optional
+    });
+
+    // Delete local PDF file
+    await fs.unlink(pdfPath);
+
+    // Send response with uploaded file URL
     res.status(200).json({
         success: true,
-        message: "PDF file generated successfully.",
-        filePath: pdfPath // optionally return download URL or base64
+        message: "PDF generated successfully.",
+        url: uploadResponse.url
     });
 });
 

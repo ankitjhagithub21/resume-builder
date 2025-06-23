@@ -1,6 +1,8 @@
+import { Github, Globe, Linkedin, Mail, Phone } from "lucide-react";
+
 const Template2 = ({ resume }) => {
     return (
-        <div className="bg-gray-50 text-gray-900 font-sans mx-auto  shadow-md rounded-md  flex flex-col md:flex-row h-[842px] lg:w-[594px] w-full  overflow-hidden">
+        <div className="bg-gray-50 text-gray-900 font-sans mx-auto  shadow-md rounded-md  flex flex-col md:flex-row h-[842px] no-scrollbar  lg:w-[594px] w-full  overflow-y-scroll">
             {/* Sidebar */}
             <aside className="md:w-1/3 bg-white p-6 border-r space-y-6">
                 {/* Name */}
@@ -11,11 +13,11 @@ const Template2 = ({ resume }) => {
 
                 {/* Contact Info */}
                 <div className="space-y-2 text-sm">
-                    {resume.contact?.email && <p>Email: {resume.contact.email}</p>}
-                    {resume.contact?.phone && <p>Phone: {resume.contact.phone}</p>}
-                    {resume.contact?.website && <p>Website: <a href={resume.contact.website} target="_blank" className="text-blue-600 hover:underline">{resume.contact.website}</a></p>}
-                    {resume.contact?.linkedin && <p>LinkedIn: <a href={resume.contact.linkedin} target="_blank" className="text-blue-600 hover:underline">Profile</a></p>}
-                    {resume.contact?.github && <p>GitHub: <a href={resume.contact.github} target="_blank" className="text-blue-600 hover:underline">Repo</a></p>}
+                    {resume.contact?.email && <p className="flex items-center"> <Mail size={15}/> {resume.contact.email}</p>}
+                    {resume.contact?.phone && <p className="flex items-center"><Phone size={15}/> {resume.contact.phone}</p>}
+                    {resume.contact?.website && <p className="flex items-center gap-1"><Globe size={15}/> <a href={resume.contact.website} target="_blank" className="text-blue-600 hover:underline">Website</a></p>}
+                    {resume.contact?.linkedin && <p className="flex items-center gap-1"><Linkedin size={15}/> <a href={resume.contact.linkedin} target="_blank" className="text-blue-600 hover:underline">Profile</a></p>}
+                    {resume.contact?.github && <p className="flex items-center gap-1"><Github size={15}/> <a href={resume.contact.github} target="_blank" className="text-blue-600 hover:underline">Repo</a></p>}
                 </div>
 
                 {/* Skills */}

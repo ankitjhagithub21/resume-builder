@@ -3,6 +3,7 @@ import Template1 from '@/components/custom/Template1'
 import Template2 from '@/components/custom/Template2'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select'
+import { toast } from 'sonner'
 
 const ResumeDownloadModal = ({ resumeId, onClose }) => {
     const [selectedTemplate, setSelectedTemplate] = useState('template1');
@@ -22,9 +23,14 @@ const ResumeDownloadModal = ({ resumeId, onClose }) => {
                 body:JSON.stringify({template:selectedTemplate,resumeId:resume._id})
             })
             const data = await res.json()
-            console.log(data)
+            if(data.success){
+              window.open(data.url, '_blank');
+            }else{
+                toast("Pdf generation failed.")
+            }
         }catch(error){
             console.log(error)
+            toast("Pdf generation failed.")
         }finally{
             setIsDownloading(false)
         }

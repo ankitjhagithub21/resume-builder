@@ -148,7 +148,7 @@ const EditResume = () => {
     return (
         <div className='container mx-auto min-h-screen p-5'>
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-3xl">Edit Resume</h1>
+                <h1 className="lg:text-3xl text-xl">Edit Resume</h1>
                 <Button onClick={handleUpdateResume} disabled={saving}>
                     {saving ? (
                         <>
