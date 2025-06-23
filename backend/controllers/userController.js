@@ -112,8 +112,12 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 const logout = (req, res) => {
     res.clearCookie('token', {
+        httpOnly:true,
+        secure:true,
+        sameSite:'none',
         maxAge: 0
-    }).status(200).json({ message: "Logout successfully.", success: true })
+    })
+    return res.status(200).json({ message: "Logout successfully.", success: true })
 }
 
 module.exports = {

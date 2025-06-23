@@ -1,3 +1,5 @@
+import { Github, Globe, Linkedin, LocateIcon, Mail, MapPin, Phone } from "lucide-react";
+
 const Template1 = ({ resume }) => {
     
 
@@ -5,34 +7,43 @@ const Template1 = ({ resume }) => {
         <div className="bg-white shadow-lg rounded-lg overflow-hidden h-screen overflow-y-scroll">
             <div className="p-8 space-y-6">
                 {/* Header */}
-                <div className="text-center border-b pb-6">
+                <div className="text-center pb-4">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                         {resume.fullName || 'Your Name'}
                     </h1>
                     <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600">
                         {resume.contact?.email && (
-                            <span>{resume.contact.email}</span>
+                            <span className="flex items-center gap-1">
+                                <Mail size={16} />
+                                {resume.contact.email}</span>
                         )}
                         {resume.contact?.phone && (
-                            <span>• {resume.contact.phone}</span>
+                            <span className="flex items-center gap-1">
+                                <Phone size={14}/>
+                                {resume.contact.phone}</span>
                         )}
                         {resume.contact?.location && (
-                            <span>• {resume.contact.location}</span>
+                            <span className="flex items-center gap-1">
+                                <MapPin size={14}/>
+                                {resume.contact.location}</span>
                         )}
                     </div>
                     <div className="flex flex-wrap justify-center gap-3 text-sm text-blue-600 mt-2">
                         {resume.contact?.linkedin && (
-                            <a href={resume.contact.linkedin} target="_blank" className="hover:underline">
+                            <a href={resume.contact.linkedin} target="_blank" className="flex items-center gap-1 hover:underline">
+                                <Linkedin size={15}/>
                                 LinkedIn
                             </a>
                         )}
                         {resume.contact?.github && (
-                            <a href={resume.contact.github} target="_blank" className="hover:underline">
+                            <a href={resume.contact.github} target="_blank" className="hover:underline flex items-center gap-1">
+                                <Github size={14}/>
                                 GitHub
                             </a>
                         )}
                         {resume.contact?.website && (
-                            <a href={resume.contact.website} target="_blank" className="hover:underline">
+                            <a href={resume.contact.website} target="_blank" className="hover:underline flex items-center gap-1">
+                                <Globe size={14}/>
                                 Website
                             </a>
                         )}

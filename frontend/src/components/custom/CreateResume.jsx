@@ -15,12 +15,14 @@ import { useUser } from "../../contexts/UserContext"
 import { useResumeDialog } from "../../contexts/ResumeDialogContext"
 import { useDispatch } from "react-redux"
 import { addResume } from "@/redux/slices/resumeSlice"
+import { useNavigate } from "react-router-dom"
 
 function CreateResume() {
   const [title, setTitle] = useState("")
   const [loading, setLoading] = useState(false)
   const { user } = useUser()
   const { open, closeDialog } = useResumeDialog()
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -33,7 +35,7 @@ function CreateResume() {
 
     setLoading(true)
 
-    try {
+    try {  
       const res = await fetch(
         `${import.meta.env.VITE_SERVER_URL}/api/resumes/create`,
         {
@@ -53,8 +55,9 @@ function CreateResume() {
       dispatch(addResume(data))
 
       toast.success("Resume created successfully.")
-      closeDialog()
 
+      closeDialog()
+      navigate(`/resume/edit/${data._id}`)
     } catch (error) {
       toast.error(error.message)
     } finally {
