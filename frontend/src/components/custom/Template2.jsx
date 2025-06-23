@@ -1,6 +1,6 @@
 const Template2 = ({ resume }) => {
     return (
-        <div className="bg-gray-50 text-gray-900 shadow-md rounded-md overflow-hidden flex flex-col md:flex-row h-screen overflow-y-scroll">
+        <div className="bg-gray-50 text-gray-900 font-sans mx-auto  shadow-md rounded-md  flex flex-col md:flex-row h-[842px] lg:w-[594px] w-full  overflow-hidden">
             {/* Sidebar */}
             <aside className="md:w-1/3 bg-white p-6 border-r space-y-6">
                 {/* Name */}
@@ -21,7 +21,7 @@ const Template2 = ({ resume }) => {
                 {/* Skills */}
                 {resume.skills?.length > 0 && (
                     <div>
-                        <h2 className="text-lg font-semibold mb-2">Skills</h2>
+                        <h2 className="text-lg font-semibold border-b border-gray-100 mb-2">Skills</h2>
                         <ul className="list-disc pl-5 text-sm space-y-1">
                             {resume.skills.map((skill, i) => (
                                 <li key={i}>{skill.name}</li>
@@ -48,7 +48,11 @@ const Template2 = ({ resume }) => {
                 {resume.interests?.length > 0 && (
                     <div>
                         <h2 className="text-lg font-semibold mb-2">Interests</h2>
-                        <p className="text-sm">{resume.interests.join(', ')}</p>
+                        {resume.interests.map((interest, i) => (
+                                <li key={i}>
+                                    {interest} 
+                                </li>
+                            ))}
                     </div>
                 )}
             </aside>
@@ -58,15 +62,15 @@ const Template2 = ({ resume }) => {
                 {/* Summary */}
                 {resume.summary && (
                     <section>
-                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Summary</h2>
-                        <p className="text-sm leading-relaxed">{resume.summary}</p>
+                        <h2 className="text-xl font-semibold border-b border-gray-300 pb-1 mb-2">Summary</h2>
+                        <p className="text-xs ">{resume.summary}</p>
                     </section>
                 )}
 
                 {/* Experience */}
                 {resume.experience?.length > 0 && (
                     <section>
-                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Work Experience</h2>
+                        <h2 className="text-xl font-semibold border-b border-gray-300 pb-1 mb-2">Work Experience</h2>
                         <div className="space-y-4">
                             {resume.experience.map((exp, i) => (
                                 <div key={i}>
@@ -83,7 +87,7 @@ const Template2 = ({ resume }) => {
                 {/* Education */}
                 {resume.education?.length > 0 && (
                     <section>
-                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Education</h2>
+                        <h2 className="text-xl font-semibold border-b border-gray-300 pb-1 mb-2">Education</h2>
                         <div className="space-y-3">
                             {resume.education.map((edu, i) => (
                                 <div key={i}>
@@ -99,14 +103,14 @@ const Template2 = ({ resume }) => {
                 {/* Projects */}
                 {resume.projects?.length > 0 && (
                     <section>
-                        <h2 className="text-xl font-semibold border-b pb-1 mb-2">Projects</h2>
+                        <h2 className="text-xl font-semibold border-b border-gray-300 pb-1  mb-2">Projects</h2>
                         <div className="space-y-3">
                             {resume.projects.map((proj, i) => (
                                 <div key={i}>
                                     <h3 className="font-semibold">{proj.name}</h3>
-                                    <p className="text-sm text-gray-600">{proj.description}</p>
+                                    <p className="text-xs text-gray-600">{proj.description}</p>
                                     {proj.techStack && (
-                                        <p className="text-sm text-blue-500">Tech: {proj.techStack.join(', ')}</p>
+                                        <p className="text-xs text-blue-500">{proj.techStack.join(', ')}</p>
                                     )}
                                     <div className="flex gap-4 mt-1 text-sm">
                                         {proj.liveDemo && <a href={proj.liveDemo} target="_blank" className="text-blue-600 hover:underline">Live</a>}

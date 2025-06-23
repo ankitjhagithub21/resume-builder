@@ -37,6 +37,7 @@ const EditResume = () => {
                 // Ensure all required fields exist with defaults
                 setResume({
                     fullName: data.fullName || '',
+                    role:data.role || '',
                     contact: {
                         email: data.contact?.email || '',
                         phone: data.contact?.phone || '',

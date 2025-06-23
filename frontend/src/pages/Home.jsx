@@ -11,7 +11,7 @@ import { useResumeDialog } from '@/contexts/ResumeDialogContext';
       <section className="py-20 text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <img src="./doc.png" alt="" className='rounded-full mx-auto mb-5 w-32'/>
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-bold  md:text-5xl">
             Build Professional Resumes Instantly
           </h1>
           <p className="mt-4 text-lg">

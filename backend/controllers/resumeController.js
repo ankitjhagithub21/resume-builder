@@ -26,7 +26,7 @@ const createResume = asyncHandler(async (req, res) => {
 
 const getUserResumes = asyncHandler(async (req, res) => {
 
-    const resumes = await Resume.find({ user: req.user._id }).select('title').sort({ updatedAt: -1 });
+    const resumes = await Resume.find({ user: req.user._id }).sort({ updatedAt: -1 });
 
     if (!resumes) {
         throw new CustomError("Resume not found.", 404)

@@ -11,10 +11,9 @@ const resumeSchema = new mongoose.Schema({
         type: String,
         default:""
     },
-    profilePhoto: {
-        url: {
-            type: String,
-        }
+    role:{
+        type:String,
+        default:""
     },
 
     title: {

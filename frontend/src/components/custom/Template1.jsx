@@ -1,16 +1,16 @@
-import { Github, Globe, Linkedin, LocateIcon, Mail, MapPin, Phone } from "lucide-react";
+import { Github, Globe, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 const Template1 = ({ resume }) => {
     
-
     return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-screen overflow-y-scroll">
-            <div className="p-8 space-y-6">
+        <div className="bg-white overflow-y-scroll no-scrollbar font-sans  h-fit shadow-lg rounded-lg   lg:w-[594px] w-full mx-auto">
+            <div className="space-y-2 p-4">
                 {/* Header */}
-                <div className="text-center pb-4">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold text-gray-900 ">
                         {resume.fullName || 'Your Name'}
                     </h1>
+                    <p className="text-gray-600 mb-1">{resume.role || 'Full stack developer'}</p>
                     <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600">
                         {resume.contact?.email && (
                             <span className="flex items-center gap-1">
@@ -22,14 +22,7 @@ const Template1 = ({ resume }) => {
                                 <Phone size={14}/>
                                 {resume.contact.phone}</span>
                         )}
-                        {resume.contact?.location && (
-                            <span className="flex items-center gap-1">
-                                <MapPin size={14}/>
-                                {resume.contact.location}</span>
-                        )}
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-3 text-sm text-blue-600 mt-2">
-                        {resume.contact?.linkedin && (
+                         {resume.contact?.linkedin && (
                             <a href={resume.contact.linkedin} target="_blank" className="flex items-center gap-1 hover:underline">
                                 <Linkedin size={15}/>
                                 LinkedIn
@@ -47,16 +40,22 @@ const Template1 = ({ resume }) => {
                                 Website
                             </a>
                         )}
+                        {resume.contact?.location && (
+                            <span className="flex items-center gap-1">
+                                <MapPin size={14}/>
+                                {resume.contact.location}</span>
+                        )}
                     </div>
+                    
                 </div>
 
                 {/* Summary */}
                 {resume.summary && (
                     <div>
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3 border-b border-gray-200 pb-1">
-                            Summary
+                        <h2 className="text-xl font-semibold text-gray-900 mb-1 border-b border-gray-200 pb-1">
+                            Professional Summary
                         </h2>
-                        <p className="text-gray-700 leading-relaxed">{resume.summary}</p>
+                        <p className="text-gray-800 text-sm">{resume.summary}</p>
                     </div>
                 )}
 
@@ -109,10 +108,10 @@ const Template1 = ({ resume }) => {
                 {/* Education */}
                 {resume.education && resume.education.length > 0 && (
                     <div>
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3 border-b border-gray-200 pb-1">
+                        <h2 className="text-xl font-semibold text-gray-900 mb-1 border-b border-gray-200 pb-1">
                             Education
                         </h2>
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             {resume.education.map((edu, index) => (
                                 <div key={index} className="flex items-start justify-between">
                                     <div>

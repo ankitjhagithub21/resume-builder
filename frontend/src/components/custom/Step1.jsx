@@ -7,8 +7,6 @@ import { Label } from '@/components/ui/label'
 const Step1 = ({ setResume, resume }) => {
     return (
 
-
-
         <Card>
             <CardHeader>
                 <CardTitle>Basic Information</CardTitle>
@@ -26,6 +24,15 @@ const Step1 = ({ setResume, resume }) => {
                             value={resume.fullName || ''}
                             onChange={(e) => setResume(prev => ({ ...prev, fullName: e.target.value }))}
                             placeholder="Your full name"
+                        />
+                    </div>
+                    <div>
+                        <Label htmlFor="role" className={"mb-1"}>Role</Label>
+                        <Input
+                            id="role"
+                            value={resume.role || ''}
+                            onChange={(e) => setResume(prev => ({ ...prev, role: e.target.value }))}
+                            placeholder="Enter your role"
                         />
                     </div>
                     <div>

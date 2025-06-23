@@ -17,10 +17,14 @@ import {
 } from "@/components/ui/alert-dialog"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteResume, setResumes } from "@/redux/slices/resumeSlice"
+import { Plus } from "lucide-react"
+import ResumeDownloadModal from "./ResumeDownloadModal"
+
 
 
 function Profile() {
   const { resumes } = useSelector(state => state.resume)
+  const [currResume,setCurrResume] = useState(null)
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -74,7 +78,7 @@ function Profile() {
       <div className="max-w-2xl mx-auto p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold">My Resumes</h1>
-          <Button onClick={openDialog}>Create New Resume</Button>
+          <Button onClick={openDialog}> <Plus/> Create New Resume</Button>
         </div>
 
         {loading ? (
@@ -119,7 +123,7 @@ function Profile() {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
-                  <Button size={"sm"}>
+                  <Button size={"sm"} onClick={()=>setCurrResume(resume)}>
                     View
                   </Button>
                 </div>
@@ -130,6 +134,10 @@ function Profile() {
         )}
       </div>
       <CreateResume />
+      {
+         currResume && <ResumeDownloadModal resume={currResume} onClose={setCurrResume}/>
+      }
+      
     </section>
   )
 }
