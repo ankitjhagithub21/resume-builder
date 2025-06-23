@@ -1,6 +1,6 @@
 const express = require('express');
 const isAuth = require('../middlewares/authMiddleware');
-const { createResume, getUserResumes, getResumeById, updateResume ,deleteResume } = require('../controllers/resumeController');
+const { createResume, getUserResumes, getResumeById, updateResume ,deleteResume, generatePdf } = require('../controllers/resumeController');
 const resumeRouter = express.Router();
 
 
@@ -9,5 +9,6 @@ resumeRouter.get("/",isAuth,getUserResumes)
 resumeRouter.get("/:id",isAuth,getResumeById)
 resumeRouter.put("/:id",isAuth,updateResume)
 resumeRouter.delete("/:id",isAuth,deleteResume)
+resumeRouter.post("/generate",isAuth,generatePdf)
 
 module.exports = resumeRouter

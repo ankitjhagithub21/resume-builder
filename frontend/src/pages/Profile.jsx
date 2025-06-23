@@ -18,13 +18,13 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { deleteResume, setResumes } from "@/redux/slices/resumeSlice"
 import { Plus } from "lucide-react"
-import ResumeDownloadModal from "./ResumeDownloadModal"
+import ResumeDownloadModal from "@/components/custom/ResumeDownloadModal"
 
 
 
 function Profile() {
   const { resumes } = useSelector(state => state.resume)
-  const [currResume,setCurrResume] = useState(null)
+  const [currResumeId,setCurrResumeId] = useState(null)
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -123,7 +123,7 @@ function Profile() {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
-                  <Button size={"sm"} onClick={()=>setCurrResume(resume)}>
+                  <Button size={"sm"} onClick={()=>setCurrResumeId(resume._id)}>
                     View
                   </Button>
                 </div>
@@ -135,7 +135,7 @@ function Profile() {
       </div>
       <CreateResume />
       {
-         currResume && <ResumeDownloadModal resume={currResume} onClose={setCurrResume}/>
+         currResumeId && <ResumeDownloadModal resumeId={currResumeId} onClose={setCurrResumeId}/>
       }
       
     </section>
