@@ -60,8 +60,7 @@ const EditResume = () => {
             }
         } catch (error) {
             console.log(error.message)
-            // Initialize with empty structure on error
-            initializeEmptyResume()
+           
         } finally {
             setLoading(false)
         }

@@ -37,19 +37,12 @@ const resumeSchema = new mongoose.Schema({
         default:""
     },
 
-    skills: [
-        {
-            name: { type: String },
-            level: { type: String }, 
-             _id:false 
-        },
-    ],
+    skills: [String],
 
     education: [
         {
             institution: { type: String},
             degree: { type: String },
-            fieldOfStudy: { type: String },
             startYear: { type: Number },
             endYear: { type: Number },
             gpa:{type:Number},

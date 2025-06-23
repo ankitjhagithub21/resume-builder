@@ -75,11 +75,7 @@ const Step4 = ({ resume, setResume }) => {
                                 onChange={(e) => updateEducation(index, 'degree', e.target.value)}
                                 placeholder="Degree"
                             />
-                            <Input
-                                value={edu.fieldOfStudy || ''}
-                                onChange={(e) => updateEducation(index, 'fieldOfStudy', e.target.value)}
-                                placeholder="Field of study"
-                            />
+                          
                            
                               <Input
                                 value={edu.gpa || ''}

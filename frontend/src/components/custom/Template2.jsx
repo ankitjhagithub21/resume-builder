@@ -26,7 +26,7 @@ const Template2 = ({ resume }) => {
                         <h2 className="text-lg font-semibold border-b border-gray-100 mb-2">Skills</h2>
                         <ul className="list-disc pl-5 text-sm space-y-1">
                             {resume.skills.map((skill, i) => (
-                                <li key={i}>{skill.name}</li>
+                                <li key={i}>{skill}</li>
                             ))}
                         </ul>
                     </div>

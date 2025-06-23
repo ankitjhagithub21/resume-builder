@@ -1,18 +1,17 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { X } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, X } from 'lucide-react'
-
-
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const Step3 = ({ resume, setResume }) => {
-    const addSkill = () => {
-        setResume(prev => ({
-            ...prev,
-            skills: [...prev.skills, { name: '', level: 'beginner' }]
-        }))
+    const addSkill = (skill) => {
+        if (skill.trim() && !resume.skills.includes(skill.trim())) {
+            setResume(prev => ({
+                ...prev,
+                skills: [...prev.skills, skill.trim()]
+            }))
+        }
     }
 
     const removeSkill = (index) => {
@@ -22,58 +21,44 @@ const Step3 = ({ resume, setResume }) => {
         }))
     }
 
-    const updateSkill = (index, field, value) => {
-        setResume(prev => ({
-            ...prev,
-            skills: prev.skills.map((skill, i) =>
-                i === index ? { ...skill, [field]: value } : skill
-            )
-        }))
-    }
     return (
-
-
         <Card>
             <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                    Skills
-                    <Button onClick={addSkill} size="sm">
-                        <Plus className="h-4 w-4 mr-1" />
-                        Add Skill
-                    </Button>
-                </CardTitle>
+                <CardTitle>Skills</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-                {resume.skills?.map((skill, index) => (
-                    <div key={index} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <Input
-                            value={skill.name || ''}
-                            onChange={(e) => updateSkill(index, 'name', e.target.value)}
-                            placeholder="Skill name"
-                            className="flex-1"
-                        />
-                        <Select
-                            value={skill.level || 'beginner'}
-                            onValueChange={(value) => updateSkill(index, 'level', value)}
-                        >
-                            <SelectTrigger className="w-32">
-                                <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="beginner">Beginner</SelectItem>
-                                <SelectItem value="intermediate">Intermediate</SelectItem>
-                                <SelectItem value="expert">Expert</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Button
-                            onClick={() => removeSkill(index)}
-                            variant="outline"
-                            size="sm"
-                        >
-                            <X className="h-4 w-4" />
-                        </Button>
-                    </div>
-                ))}
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {resume.skills.map((skill, index) => (
+                        <Badge key={index} variant="secondary" className="flex items-center gap-2">
+                            {skill}
+                            <Button onClick={() => removeSkill(index)} variant={"ghost"} size="xs">
+                                <X />
+                            </Button>
+                        </Badge>
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Input
+                        placeholder="Add a skill"
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                addSkill(e.target.value)
+                                e.target.value = ''
+                            }
+                        }}
+                    />
+                    <Button
+                        type="button"
+                        size="sm"
+                        onClick={(e) => {
+                            const input = e.target.previousElementSibling
+                            addSkill(input.value)
+                            input.value = ''
+                        }}
+                    >
+                        Add
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     )

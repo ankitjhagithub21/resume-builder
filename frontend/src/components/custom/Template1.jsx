@@ -10,7 +10,7 @@ const Template1 = ({ resume }) => {
                     <h1 className="text-3xl font-bold text-gray-900 ">
                         {resume.fullName || 'Your Name'}
                     </h1>
-                    <p className="text-gray-600 mb-1">{resume.role || 'Full stack developer'}</p>
+                    <p className="text-gray-600 mb-1">{resume.role || ''}</p>
                     <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-600">
                         {resume.contact?.email && (
                             <span className="flex items-center gap-1">
@@ -71,7 +71,7 @@ const Template1 = ({ resume }) => {
                                     key={index}
                                     className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
                                 >
-                                        {skill.name}
+                                        {skill}
                                 </span>
                             ))}
                         </div>
