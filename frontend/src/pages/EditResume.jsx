@@ -10,6 +10,7 @@ import Step8 from '@/components/custom/Step8';
 import Step9 from '@/components/custom/Step9';
 import Template1 from '@/components/custom/Template1';
 import Template2 from '@/components/custom/Template2';
+import Template3 from '@/components/custom/Template3';
 import { Button } from '@/components/ui/button';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { Loader2, Save } from 'lucide-react';
@@ -183,12 +184,14 @@ const EditResume = () => {
                         <SelectContent>
                             <SelectItem value="template1">Template 1</SelectItem>
                             <SelectItem value="template2">Template 2</SelectItem>
+                            <SelectItem value="template3">Template 3</SelectItem>
                         </SelectContent>
                     </Select>
                   </div>
 
                     {selectedTemplate === 'template1' && <Template1 resume={resume} />}
                     {selectedTemplate === 'template2' && <Template2 resume={resume} />}
+                    {selectedTemplate === 'template3' && <Template3 resume={resume} />}
                 </div>
             </div>
 
