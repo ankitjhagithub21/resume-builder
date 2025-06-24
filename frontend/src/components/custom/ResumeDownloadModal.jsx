@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select'
 import { toast } from 'sonner'
 import { X } from 'lucide-react'
+import Template3 from './Template3'
 
 const ResumeDownloadModal = ({ resumeId, onClose }) => {
     const [selectedTemplate, setSelectedTemplate] = useState('template1');
@@ -61,7 +62,7 @@ const ResumeDownloadModal = ({ resumeId, onClose }) => {
     
     return (
         <div className='h-screen w-full bg-black fixed top-0 left-0 p-5 overflow-y-scroll z-50'>
-            <div className='fixed right-6 top-0 flex gap-2 p-2 z-50 '>
+            <div className='absolute right-6 top-0 flex gap-2 p-2 z-50 '>
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
                     <SelectTrigger className="w-40">
                         <SelectValue placeholder="Choose a template" />
@@ -69,6 +70,7 @@ const ResumeDownloadModal = ({ resumeId, onClose }) => {
                     <SelectContent>
                         <SelectItem value="template1">Template 1</SelectItem>
                         <SelectItem value="template2">Template 2</SelectItem>
+                        <SelectItem value="template3">Template 3</SelectItem>
                     </SelectContent>
                 </Select>
                 <Button
@@ -86,6 +88,7 @@ const ResumeDownloadModal = ({ resumeId, onClose }) => {
                isLoading ? <p>Loading....</p> : resume ? <div className='mt-20'>
                 {selectedTemplate === "template1" && <Template1 resume={resume} />}
                 {selectedTemplate === "template2" && <Template2 resume={resume} />}
+                {selectedTemplate === "template3" && <Template3 resume={resume} />}
             </div> : <p className='text-xl p-5 text-center text-white'>Resume not found</p>
             }
         </div>
