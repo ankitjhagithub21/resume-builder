@@ -1,82 +1,65 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { X } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const Step8 = ({ resume, setResume }) => {
-  const addLanguage = () => {
-    setResume(prev => ({
-      ...prev,
-      languages: [...prev.languages, { name: '', level: 'beginner' }],
-    }))
+  const addLanguage = (language) => {
+    const trimmed = language.trim()
+    if (trimmed && !resume.languages.includes(trimmed)) {
+      setResume(prev => ({
+        ...prev,
+        languages: [...prev.languages, trimmed]
+      }))
+    }
   }
 
   const removeLanguage = (index) => {
     setResume(prev => ({
       ...prev,
-      languages: prev.languages.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateLanguage = (index, field, value) => {
-    setResume(prev => ({
-      ...prev,
-      languages: prev.languages.map((lang, i) =>
-        i === index ? { ...lang, [field]: value } : lang
-      ),
+      languages: prev.languages.filter((_, i) => i !== index)
     }))
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          Languages
-          <Button onClick={addLanguage} size="sm">
-            <Plus className="h-4 w-4 mr-1" />
-            Add Language
-          </Button>
-        </CardTitle>
+        <CardTitle>Languages</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {resume.languages?.map((lang, index) =>
-          typeof lang === 'object' && lang !== null ? (
-            <div
-              key={index}
-              className="flex items-center gap-4 p-4 border rounded-lg"
-            >
-              <Input
-                value={lang.name}
-                onChange={(e) => updateLanguage(index, 'name', e.target.value)}
-                placeholder="Language name"
-                className="flex-1"
-              />
-              <Select
-                value={lang.level}
-                onValueChange={(value) =>
-                  updateLanguage(index, 'level', value)
-                }
-              >
-                <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Level" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="beginner">Beginner</SelectItem>
-                  <SelectItem value="intermediate">Intermediate</SelectItem>
-                  <SelectItem value="expert">Expert</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
-                onClick={() => removeLanguage(index)}
-                variant="outline"
-                size="sm"
-              >
-                <X className="h-4 w-4" />
+        <div className="flex flex-wrap gap-2 mb-4">
+          {resume.languages.map((language, index) => (
+            <Badge key={index} variant="secondary" className="flex items-center gap-2">
+              {language}
+              <Button onClick={() => removeLanguage(index)} size="xs">
+                <X className="h-3 w-3" />
               </Button>
-            </div>
-          ) : null
-        )}
+            </Badge>
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <Input
+            placeholder="Add a language"
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addLanguage(e.target.value)
+                e.target.value = ''
+              }
+            }}
+          />
+          <Button
+            type="button"
+            size="sm"
+            onClick={(e) => {
+              const input = e.target.previousElementSibling
+              addLanguage(input.value)
+              input.value = ''
+            }}
+          >
+            Add
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )

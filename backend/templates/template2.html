@@ -37,19 +37,21 @@
       <div>
         <h2 class="text-lg font-semibold border-b border-gray-100 mb-2">Skills</h2>
         <ul class="list-disc pl-5 text-sm space-y-1">
-          {{#each skills}}<li>{{name}}</li>{{/each}}
+          {{#each skills}}<li>{{this}}</li>{{/each}}
         </ul>
       </div>
       {{/if}}
 
       {{#if languages.length}}
-      <div>
-        <h2 class="text-lg font-semibold border-b border-gray-100 mb-2">Languages</h2>
-        <ul class="list-disc pl-5 text-sm space-y-1">
-          {{#each languages}}<li>{{name}}{{#if level}} ({{level}}){{/if}}</li>{{/each}}
-        </ul>
-      </div>
-      {{/if}}
+  <div>
+    <h2 class="text-lg font-semibold border-b border-gray-100 mb-2">Languages</h2>
+    <ul class="list-disc pl-5 text-sm space-y-1">
+      {{#each languages}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
 
       {{#if interests.length}}
       <div>

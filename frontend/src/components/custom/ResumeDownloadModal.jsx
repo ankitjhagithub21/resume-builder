@@ -4,6 +4,7 @@ import Template2 from '@/components/custom/Template2'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select'
 import { toast } from 'sonner'
+import { X } from 'lucide-react'
 
 const ResumeDownloadModal = ({ resumeId, onClose }) => {
     const [selectedTemplate, setSelectedTemplate] = useState('template1');
@@ -77,7 +78,7 @@ const ResumeDownloadModal = ({ resumeId, onClose }) => {
                     {isDownloading ? 'Generating...' : 'Generate Pdf'}
                 </Button>
                 <Button variant="outline" onClick={() => onClose(null)}>
-                    Close
+                    <X/>
                 </Button>
             </div>
 

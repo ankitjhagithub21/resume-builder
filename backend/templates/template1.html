@@ -48,15 +48,16 @@
     </div>
     {{/if}}
 
-    <!-- Skills -->
-    {{#if skills.length}}
-    <div class="mb-4">
-      <h2 class="font-semibold text-gray-900 border-b border-gray-300 pb-1 mb-1">Skills</h2>
-      <div class="flex flex-wrap gap-2">
-        {{#each skills}}<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{{name}}</span>{{/each}}
-      </div>
+   {{#if skills.length}}
+  <div class="mb-4">
+    <h2 class="font-semibold text-gray-900 border-b border-gray-300 pb-1 mb-1">Skills</h2>
+    <div class="flex flex-wrap gap-2">
+      {{#each skills}}
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{{this}}</span>
+      {{/each}}
     </div>
-    {{/if}}
+  </div>
+{{/if}}
 
     <!-- Experience -->
     {{#if experience.length}}
@@ -126,17 +127,18 @@
     </div>
     {{/if}}
 
-    <!-- Languages -->
-    {{#if languages.length}}
-    <div class="mb-4">
-      <h2 class="font-semibold text-gray-900 border-b border-gray-300 pb-1 mb-1">Languages</h2>
-      <div class="flex flex-wrap gap-2">
-        {{#each languages}}
-        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">{{name}} {{#if level}}({{level}}){{/if}}</span>
-        {{/each}}
-      </div>
-    </div>
-    {{/if}}
+   <!-- Languages -->
+{{#if languages.length}}
+<div class="mb-4">
+  <h2 class="font-semibold text-gray-900 border-b border-gray-300 pb-1 mb-1">Languages</h2>
+  <div class="flex flex-wrap gap-2">
+    {{#each languages}}
+    <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">{{this}}</span>
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+
 
     <!-- Interests -->
     {{#if interests.length}}

@@ -114,7 +114,11 @@ const generatePdf = asyncHandler(async (req, res) => {
 
     const content = await compile(template, resume);
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
     const page = await browser.newPage();
 
     await page.setContent(content, { waitUntil: 'networkidle0' });

@@ -81,13 +81,7 @@ const resumeSchema = new mongoose.Schema({
         },
     ],
 
-    languages: [
-        {
-            name: { type: String },
-            level: { type: String }, 
-             _id:false
-        },
-    ],
+    languages: [String],
 
     interests: [String],
 
