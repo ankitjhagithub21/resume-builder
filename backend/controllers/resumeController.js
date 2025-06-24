@@ -116,7 +116,8 @@ const generatePdf = asyncHandler(async (req, res) => {
 
     const browser = await puppeteer.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        executablePath: './.puppeteer-cache/chrome/linux-137.0.7151.119/chrome-linux64/chrome'
     });
 
     const page = await browser.newPage();
