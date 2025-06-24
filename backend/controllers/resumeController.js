@@ -20,6 +20,10 @@ hbs.registerHelper('formatDate', function (date) {
     return moment(date).format('MMM YYYY'); // e.g., Jun 2023
 });
 
+hbs.registerHelper('join', function (arr, sep) {
+  return Array.isArray(arr) ? arr.join(sep) : arr;
+});
+
 
 const createResume = asyncHandler(async (req, res) => {
     const { title } = req.body;
@@ -120,6 +124,7 @@ const generatePdf = asyncHandler(async (req, res) => {
         executablePath: './.puppeteer-cache/chrome/linux-137.0.7151.119/chrome-linux64/chrome'
     });
 
+    // const browser = await puppeteer.launch()
     const page = await browser.newPage();
 
     await page.setContent(content, { waitUntil: 'networkidle0' });

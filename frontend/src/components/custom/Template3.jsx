@@ -117,7 +117,7 @@ const Template3 = ({ resume }) => {
                             {resume.skills.map((skill, index) => (
                                 <span
                                     key={index}
-                                    className="bg-slate-800 text-white px-3 py-2 rounded-full text-sm font-medium hover:bg-slate-700 transition-colors"
+                                    className="bg-slate-800 text-white px-3 py-2 rounded-full text-sm font-medium "
                                 >
                                     {skill}
                                 </span>
@@ -211,7 +211,7 @@ const Template3 = ({ resume }) => {
                         </div>
                         <div className="space-y-4">
                             {resume.projects.map((project, index) => (
-                                <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                                <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 ">
                                     <h3 className="text-lg font-bold text-slate-900 mb-2">
                                         {project.name || 'Project Name'}
                                     </h3>
@@ -269,15 +269,15 @@ const Template3 = ({ resume }) => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {resume.certificates.map((cert, index) => (
-                                <div key={index} className="bg-slate-800 text-white p-4 rounded-lg">
-                                    <h3 className="font-bold mb-1">
+                                <div key={index} className="p-4 rounded-lg border border-slate-300">
+                                    <h3 className="font-bold text-slate-800 mb-1">
                                         {cert.title || 'Certificate Name'}
                                     </h3>
-                                    <p className="text-slate-300 mb-1 text-sm">
+                                    <p className="text-slate-600 mb-1 text-sm">
                                         {cert.issuer || 'Issuing Organization'}
                                     </p>
                                     {cert.year && (
-                                        <p className="text-sm text-slate-400">{cert.year}</p>
+                                        <p className="text-sm text-slate-800">{cert.year}</p>
                                     )}
                                 </div>
                             ))}

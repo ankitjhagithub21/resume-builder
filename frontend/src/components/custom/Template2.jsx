@@ -6,8 +6,9 @@ const Template2 = ({ resume }) => {
             {/* Sidebar */}
             <aside className="md:w-1/3 bg-white p-6 border-r space-y-6">
                 {/* Name */}
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold">{resume.fullName || 'Your Name'}</h1>
+                <div className="text-left">
+                    <h1 className="text-3xl font-bold">{resume.fullName || 'Your Name'}</h1>
+                    <h2 className="text-sm">{resume.role}</h2>
                     <p className="text-sm text-gray-600">{resume.contact?.location || ''}</p>
                 </div>
 
