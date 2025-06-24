@@ -125,7 +125,7 @@ const Template1 = ({ resume }) => {
                                         {edu.startYear || 'Start'} - {edu.endYear || 'End'}
                                        
                                     </p>
-                                    <p className="text-sm text-gray-600"> {edu.gpa && `  CGPA: ${edu.gpa}`}</p>
+                                    <p className="text-sm text-gray-600"> {edu.gpa && `  GPA: ${edu.gpa}`}</p>
                                     </div>
                                   
                                 </div>
